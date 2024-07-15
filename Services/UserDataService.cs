@@ -35,7 +35,7 @@ public class UserDataService : IUserDataService
     public async Task<UserData> GetByLogin(string login)
     {
         var query =
-            from u in this.ctx.UserDatas
+            from u in this.ctx.UserData
             where u.UserName == login
             select u;
         

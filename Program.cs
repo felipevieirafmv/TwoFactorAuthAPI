@@ -2,10 +2,14 @@ using Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services;
+using Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<TwoFactorAuthAPIDbContext>();
+builder.Services.AddTransient<IUserDataService, UserDataService>();
+builder.Services.AddSingleton<ISecurityService, SecurityService>();
 
 builder.Services.AddCors(options =>
 {
@@ -33,5 +37,9 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

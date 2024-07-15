@@ -4,8 +4,10 @@ namespace Model;
 
 public class TwoFactorAuthAPIDbContext : DbContext
 {
-    public DbSet<UserData> UserDatas { get; set; }
+    public DbSet<UserData> UserData { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=Notebook-Felipe/SQLEXPRESS; Database=TwoFactorAuthAPI; Trusted_Connection=False; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer(
+            "Server=Notebook-Felipe\\SQLEXPRESS; Database=TwoFactorAuthAPI; Trusted_Connection=True; TrustServerCertificate=True;"
+            );
 }
