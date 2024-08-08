@@ -42,7 +42,9 @@ public class UserDataController : ControllerBase
             return Unauthorized("Usuário não existe");
 
         var password = await security.HashPassword(loggedUser.UserName, loggedUser.Salt);
+        System.Console.WriteLine("Senha input: ", password.ToString());
         var realPassword = loggedUser.UserPassword;
+        System.Console.WriteLine("Senha banco: ", realPassword.ToString());
 
         if(password != realPassword)
             return BadRequest("Senha incorreta");
